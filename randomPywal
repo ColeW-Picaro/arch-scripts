@@ -3,8 +3,6 @@
 # This script selects a random wallpaper in the ~/Pictures/Wallpapers directory and
 # runs pywal on it
 
-ls ~/Pictures/Wallpapers | sort -R | tail -$N | while read file; do
-    echo $file
-    wal -a 85 -i ~/Pictures/Wallpapers/"$file"
-    break
-done
+files = {/home/colew/Pictures/Wallpapers/*}
+file = "%s\n" "${files[RANDOM % ${#files[@]}]}"
+wal -a 85 -i ~/Pictures/Wallpapers/"$file"
